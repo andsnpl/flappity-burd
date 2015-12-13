@@ -1,0 +1,19 @@
+{
+  "name": "flappity-burd",
+  "version": "0.1.0",
+  "description": "It's a game",
+  "main": "js/main.js",
+  "scripts": {
+    "test": "none"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/B-Paul/flappity-burd.git"
+  },
+  "author": "Paul Anderson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/B-Paul/flappity-burd/issues"
+  },
+  "homepage": "https://github.com/B-Paul/flappity-burd"
+}
