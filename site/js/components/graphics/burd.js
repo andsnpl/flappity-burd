@@ -7,7 +7,7 @@ var BurdGraphicsComponent = function (entity) {
 BurdGraphicsComponent.prototype.draw = function (context) {
   context.fillStyle = '#aba4f4';
   context.beginPath();
-  context.arc(50, 50, 10, 0, 2 * Math.PI);
+  context.arc(50, 50, 70, 0, 2 * Math.PI);
   context.fill();
 };
 
