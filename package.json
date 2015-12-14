@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/B-Paul/flappity-burd/issues"
   },
-  "homepage": "https://github.com/B-Paul/flappity-burd"
+  "homepage": "https://github.com/B-Paul/flappity-burd",
+  "devDependencies": {
+    "webpack": "^1.12.9"
+  }
 }
