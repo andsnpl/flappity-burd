@@ -1,0 +1,1 @@
+{"version":3,"sources":["main.scss"],"names":[],"mappings":"AAAA,KAAA,KACE,OAAA,EACA,QAAA,EACA,OAAA,KAGF,aACE,MAAA,KACA,OAAA","file":"main.css","sourcesContent":["html, body {\n  margin: 0;\n  padding: 0;\n  height: 100%;\n}\n\n#main-canvas {\n  width: 100%;\n  height: 100%;\n}\n"],"sourceRoot":"/source/"}
