@@ -7,20 +7,36 @@ var GraphicsSystem = function (entities, canvas) {
 };
 
 GraphicsSystem.prototype.run = function () {
-  global.requestAnimationFrame(this.tick.bind(this));
+  var recur = () => {
+    global.requestAnimationFrame((t) => {
+      this.tick(t, recur);
+    });
+  };
+
+  recur();
 };
 
-GraphicsSystem.prototype.tick = function () {
+GraphicsSystem.prototype.tick = function (t, cb) {
   // Blank slate.
-  this.canvas.width = this.canvas.offsetWidth;
-  this.canvas.height = this.canvas.offsetHeight;
+  if (this.canvas.width !== this.canvas.offsetWith ||
+      this.canvas.height !== this.canvas.offsetHeight) {
+    this.canvas.width = this.canvas.offsetWidth;
+    this.canvas.height = this.canvas.offsetHeight;
+  }
   this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  this.context.save();
+  this.context.translate(this.canvas.width / 2, this.canvas.height);
+  this.context.scale(this.canvas.height, -this.canvas.height);
 
   // Render.
   this.entities.forEach((entity) => {
     if (!entity.components || !entity.components.graphics) { return; }
     entity.components.graphics.draw(this.context);
   });
+
+  this.context.restore();
+
+  cb();
 };
 
 module.exports = GraphicsSystem;
