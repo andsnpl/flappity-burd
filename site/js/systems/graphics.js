@@ -10,7 +10,7 @@ GraphicsSystem.prototype.run = function () {
   global.requestAnimationFrame(this.tick.bind(this));
 };
 
-GraphicsSystem.prototype.tick = function () {
+GraphicsSystem.prototype.tick = function (t) {
   // Blank slate.
   this.canvas.width = this.canvas.offsetWidth;
   this.canvas.height = this.canvas.offsetHeight;
@@ -19,8 +19,10 @@ GraphicsSystem.prototype.tick = function () {
   // Render.
   this.entities.forEach((entity) => {
     if (!entity.components || !entity.components.graphics) { return; }
-    entity.components.graphics.draw(this.context);
+    entity.components.graphics.draw(this.context, t);
   });
+
+  global.requestAnimationFrame(this.tick.bind(this));
 };
 
 module.exports = GraphicsSystem;
