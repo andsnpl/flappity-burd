@@ -1,3 +1,5 @@
+'use strict';
+
 var FlappityBurd = require('./flappity-burd');
 
 document.addEventListener('DOMContentLoaded', function () {

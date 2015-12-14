@@ -13,7 +13,7 @@ GraphicsSystem.prototype.run = function () {
 
 GraphicsSystem.prototype.tick = function () {
   this.entities.forEach(function (entity) {
-    if (!entity.components || !entity.components.graphics) { continue; }
+    if (!entity.components || !entity.components.graphics) { return; }
     entity.components.graphics.draw(this.context);
   });
 };

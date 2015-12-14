@@ -6,7 +6,7 @@ var Burd = function () {
   console.log('Creating burd entity.');
 
   this.components = {
-    graphics: new BurdGraphicsComponent(this);
+    graphics: new BurdGraphicsComponent(this)
   };
 };
 

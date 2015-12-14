@@ -5,7 +5,7 @@ var BurdGraphicsComponent = function (entity) {
 };
 
 BurdGraphicsComponent.prototype.draw = function () {
-  console.log('Drawing a burd.')
+  console.log('Drawing a burd.');
   console.log('The burd to draw is-', this.entity);
 };
 

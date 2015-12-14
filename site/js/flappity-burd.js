@@ -1,3 +1,5 @@
+'use strict';
+
 var GraphicsSystem = require('./systems/graphics'),
     Burd = require('./entities/burd');
 
