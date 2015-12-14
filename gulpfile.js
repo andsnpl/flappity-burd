@@ -98,7 +98,7 @@ gulp.task('sass', function () {
 
 // Comprehensive build
 
-gulp.task('build', ['js', 'sass', 'html', 'images']);
+gulp.task('build', ['js', 'sass']);
 
 
 // Continuous build
