@@ -15,7 +15,7 @@ InputSystem.prototype.run = function () {
 
 InputSystem.prototype.onClick = function () {
   var burd = this.entities[0];
-  burd.components.physics.velocity.y = 0.7;
+  burd.components.physics.velocity.y = 0.5;
 };
 
 InputSystem.prototype.onTouchStart = function (evt) {
