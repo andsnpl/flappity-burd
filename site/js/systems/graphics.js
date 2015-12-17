@@ -7,13 +7,12 @@ var GraphicsSystem = function (entities, canvas) {
 };
 
 GraphicsSystem.prototype.run = function () {
-  var recur = () => {
+  var tick = this.tick.bind(this);
+  (function recur() {
     global.requestAnimationFrame((t) => {
-      this.tick(t, recur);
+      tick(t, recur);
     });
-  };
-
-  recur();
+  })();
 };
 
 GraphicsSystem.prototype.tick = function (t, cb) {

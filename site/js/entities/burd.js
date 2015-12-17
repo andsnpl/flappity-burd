@@ -4,8 +4,6 @@ var BurdGraphicsComponent = require('../components/graphics/burd'),
     PhysicsComponent = require('../components/physics/physics');
 
 var Burd = function () {
-  console.log('Creating burd entity.');
-
   this.components = {
     graphics: new BurdGraphicsComponent(this),
     physics: new PhysicsComponent(this)

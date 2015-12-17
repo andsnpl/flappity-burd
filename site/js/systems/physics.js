@@ -9,7 +9,7 @@ PhysicsSystem.prototype.run = function () {
 };
 
 PhysicsSystem.prototype.tick = function () {
-  this.entities.forEach(function (entity) {
+  this.entities.forEach((entity) => {
     if (!entity.components || !entity.components.physics) { return; }
     entity.components.physics.update(1/60);
   });
