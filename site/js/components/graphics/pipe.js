@@ -13,8 +13,7 @@ PipeGraphicsComponent.prototype.draw = function (context) {
   context.save();
   context.translate(position.x - (width / 2), 0);
   context.fillStyle = 'green';
-  context.fillRect(0, 0, width, height - (gap / 2));
-  context.fillRect(0, height + (gap / 2), width, 1);
+  context.fillRect(position.x, position.y, width, height);
   context.restore();
 };
 
