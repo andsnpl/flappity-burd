@@ -5,21 +5,20 @@ var BurdGraphicsComponent = require('../components/graphics/burd'),
     CircleCollisionComponent = require('../components/collisions/circle');
 
 var Burd = function () {
-  this.radius = 0.02;
+  this.radius = 0.03;
 
   this.components = {
     graphics: new BurdGraphicsComponent(this),
-    physics: new PhysicsComponent(this),
     collisions: new CircleCollisionComponent(this, this.radius)
   };
 
-  this.components.physics.position.y = 0.5;
-  this.components.physics.acceleration.y = -2;
-  this.components.collisions.onCollision = this.onCollision.bind(this);
+  this.reset();
 };
 
-Burd.prototype.onCollision = function (entity) {
-  console.log('Burd collided with entity:', entity);
+Burd.prototype.reset = function () {
+  this.components.physics = new PhysicsComponent();
+  this.components.physics.position.y = 0.5;
+  this.components.physics.acceleration.y = -1.5;
 };
 
 module.exports = Burd;

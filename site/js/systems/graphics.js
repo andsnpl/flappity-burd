@@ -35,7 +35,7 @@ GraphicsSystem.prototype.tick = function (t, cb) {
 
   this.context.restore();
 
-  cb();
+  cb && cb();
 };
 
 module.exports = GraphicsSystem;

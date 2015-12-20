@@ -21,35 +21,24 @@ RectCollisionComponent.prototype.collideCircle = function (entity) {
 };
 
 RectCollisionComponent.prototype.collideRect = function (entity) {
-  var clamp = function(value, low, high) {
-    if (value < low) {
-      return low;
-    }
-    if (value > high) {
-      return high;
-    }
-    return value;
-  };
+  var positionA = this.entity.components.physics.position,
+      positionB = entity.components.physics.position;
 
-  var positionA = this.entity.components.physics.position;
-  var positionB = entity.components.physics.position;
-  var sizeB = entity.components.collisions.size;
+  var sizeA = this.size,
+      sizeB = entity.components.collisions.size;
 
-  var closest = {
-    x: clamp(positionA.x, positionB.x - sizeB.x / 2,
-             positionB.x + sizeB.x / 2),
-    y: clamp(positionA.y, positionB.y - sizeB.y / 2,
-             positionB.y + sizeB.y / 2)
-  };
+  var leftA = positionA.x - sizeA.x / 2;
+  var rightA = positionA.x + sizeA.x / 2;
+  var bottomA = positionA.y - sizeA.y / 2;
+  var topA = positionA.y + sizeA.y / 2;
 
+  var leftB = positionB.x - sizeB.x / 2;
+  var rightB = positionB.x + sizeB.x / 2;
+  var bottomB = positionB.y - sizeB.y / 2;
+  var topB = positionB.y + sizeB.y / 2;
 
-  var radiusA = this.radius;
-
-  var diff = {x: positionA.x - closest.x,
-              y: positionA.y - closest.y};
-
-  var distanceSquared = diff.x * diff.x + diff.y * diff.y;
-  return distanceSquared < radiusA * radiusA;
+  return !(leftA > rightB || leftB > rightA ||
+           bottomA > topB || bottomB > topA);
 };
 
 module.exports = RectCollisionComponent;

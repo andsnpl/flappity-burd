@@ -4,9 +4,10 @@ var PipeGraphicsComponent = require('../components/graphics/pipe'),
     PhysicsComponent = require('../components/physics/physics'),
     RectCollisionComponent = require('../components/collisions/rectangle');
 
-var Pipe = function (startX, startY, height) {
+var Pipe = function (startX, height, attach, passCb) {
+  this.attach = attach;
   this.height = height;
-  this.width = 0.15;
+  this.width = 0.12;
 
   this.components = {
     graphics: new PipeGraphicsComponent(this),
@@ -14,14 +15,25 @@ var Pipe = function (startX, startY, height) {
     collisions: new RectCollisionComponent(this, {x: this.width, y: this.height})
   };
 
-  this.components.physics.position.x = startX + (this.width / 2);
-  this.components.physics.position.y = startY;
-  this.components.physics.velocity.x = -0.1;
-  this.components.collisions.onCollision = this.onCollision.bind(this);
-};
+  // Really hacky. This augments the physics update to check the new position
+  // and trigger a callback when it first passes below 0 (i.e., the center of
+  // the play area). The cb in this instance ties back to a method of the
+  // ObstacleSystem object that created this pipe, which will be overridden by
+  // the main module to route through to the UISystem. Only the top pipe even
+  // gets this. YUCK. This begs for a refactor.
+  this.components.physics.update = function () {
+    PhysicsComponent.prototype.update.apply(this, arguments);
+    if (passCb && this.position.x <= 0) {
+      passCb();
+      passCb = null;
+    }
+  };
 
-Pipe.prototype.onCollision = function (entity) {
-  console.log('Pipe collided with entity:', entity);
+  this.components.physics.position.x = startX + (this.width / 2);
+  this.components.physics.position.y = attach === 'T' ?
+    1 - (height / 2) :
+    height / 2;
+  this.components.physics.velocity.x = -0.25;
 };
 
 module.exports = Pipe;
