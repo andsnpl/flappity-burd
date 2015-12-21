@@ -7,17 +7,21 @@ var Pipe = require('../entities/pipe'),
 var ObstacleSystem = function (entities, canvas) {
   this.entities = entities;
   this.canvas = canvas;
-  this.ground = new AltitudeLimit(this.canvas.width, 0);
-  this.ceiling = new AltitudeLimit(this.canvas.width, 1);
+  this.ground = new AltitudeLimit(0);
+  this.ceiling = new AltitudeLimit(1.01);
   this.entities.push(this.ground, this.ceiling);
   this.intvl = null;
 };
 
-ObstacleSystem.prototype.run = function () {
-  // clear existing pipes
+ObstacleSystem.prototype.reset = function () {
   for (var i = this.entities.length - 1; i >= 0; i--) {
     if (this.entities[i] instanceof Pipe) { this.entities.splice(i, 1); }
   }
+};
+
+ObstacleSystem.prototype.run = function () {
+  // clear existing pipes
+  this.reset();
   this.intvl = window.setInterval(this.tick.bind(this), 1000 * 2);
 };
 
@@ -29,13 +33,11 @@ ObstacleSystem.prototype.pause = function () {
 ObstacleSystem.prototype.tick = function () {
   var aspectRatio = this.canvas.width / 2 / this.canvas.height,
       height = scale(Math.random(), [0, 1], [0.2, 0.8]),
-      gap = 0.2,
+      gap = 0.25,
       height1 = height - gap / 2,
       height2 = 1 - height1 - gap,
 
       pass = this.onPassObstacle.bind(this);
-
-  this.ground.width = this.canvas.width; // Update the ground if the canvas size changes.
 
   this.entities.push(new Pipe(aspectRatio, height1, 'T', pass));
   this.entities.push(new Pipe(aspectRatio, height2, 'B'));
@@ -45,5 +47,7 @@ ObstacleSystem.prototype.tick = function () {
     }
   });
 };
+
+ObstacleSystem.prototype.onPassObstacle = function () {};
 
 module.exports = ObstacleSystem;

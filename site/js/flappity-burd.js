@@ -22,21 +22,31 @@ var FlappityBurd = function(canvas) {
   };
 
   this.burd.components.collisions.onCollision = () => {
-    this.physics.pause();
     this.obstacles.pause();
+    this.graphics.pause();
+    this.physics.pause();
     this.input.started = false;
     this.ui.reset();
+    this.burd.die();
+  };
+
+  this.ui.onReady = () => {
+    this.burd.reset();
+    this.obstacles.reset();
+    this.graphics.run();
+    this.physics.run();
   };
 };
 
 FlappityBurd.prototype.run = function () {
   this.graphics.run();
   this.input.run();
+  this.physics.run();
   this.input.onStartGame = () => {
     if (!this.ui.isReady) { return false; }
-    this.burd.reset();
     this.obstacles.run();
-    this.physics.run();
+    this.ui.start();
+    this.burd.start();
     return true;
   };
 };

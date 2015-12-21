@@ -3,10 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <title>Flappity Burd Game</title>
+  <link href='https://fonts.googleapis.com/css?family=VT323'
+        rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-  <div id="burd-splash"></div>
+  <label for="toggle1" class="toggle-label">?</label>
+  <div id="burd-splash-container">
+    <input type="checkbox" id="toggle1" class="toggle">
+    <div id="burd-info-splash">
+      <p>Flappy Trump was designed and created by
+      <a href="mailto:paul@andersonpaul.com">Paul Anderson</a></p>
+      <p>The game was built using <a href="https://babeljs.io">Babel</a> for ES6
+      to ES5 conversion, <a href="https://gulpjs.com/">Gulp</a>,
+      <a href="https://browserify.org/">Browserify</a>, and
+      <a href="https://www.browsersync.io/">BrowserSync</a> for builds, and
+      <a href="https://sass-lang.com/">SASS</a> for CSS.</p>
+      <p>The font used is <a href="https://www.google.com/fonts/specimen/VT323">
+      VT323</a>.</p>
+      <p>Donald Trump sound bites and the image for the Trump head were sourced
+      from news reporting and are believed to be a fair use.</p>
+      <p>Additional sounds were provided by
+      <a href="http://www.freesound.org/people/Benboncan/sounds/91924/">
+      Benboncan</a> and
+      <a href="http://www.freesound.org/people/movingplaid/sounds/88553/">
+      movingplaid</a>, under the Creative Commons Attribution 3.0 license,
+      and by
+      <a href="http://www.freesound.org/people/qubodup/sounds/59999/">
+      qubodup</a>, through a public domain contribution.</p>
+    </div>
+    <div id="burd-ending-splash">
+      <p>Your final score: <span id="burd-final-score"></span></p>
+      <p>Your high score: <span id="burd-high-score"></span></p>
+      <input type="button" id="burd-ready-button" value="Retry"></input>
+    </div>
+    <div id="burd-ready-splash">
+      Tap the screen to fly.
+    </div>
+  </div>
   <div id="burd-score-container">
     <div id="burd-score"></div>
   </div>

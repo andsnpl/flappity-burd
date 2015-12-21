@@ -16,11 +16,12 @@ InputSystem.prototype.run = function () {
 
 InputSystem.prototype.onClick = function (evt) {
   evt.preventDefault();
-  if (!this.started && this.onStartGame()) {
+  if (!this.started) {
+    if (!this.onStartGame()) { return; }
     this.started = true;
   }
   var burd = this.entities[0];
-  burd.components.physics.velocity.y = 0.55;
+  burd.flap();
 };
 
 InputSystem.prototype.onTouchStart = function (evt) {

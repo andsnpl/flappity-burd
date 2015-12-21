@@ -1,5 +1,7 @@
 'use strict';
 
+var AltitudeLimit = require('../entities/altitude-limit');
+
 var GraphicsSystem = function (entities, canvas) {
   this.entities = entities;
   this.canvas = canvas;
@@ -7,12 +9,16 @@ var GraphicsSystem = function (entities, canvas) {
 };
 
 GraphicsSystem.prototype.run = function () {
-  var tick = this.tick.bind(this);
+  var tick = GraphicsSystem.prototype.tick.bind(this);
   (function recur() {
     global.requestAnimationFrame((t) => {
       tick(t, recur);
     });
   })();
+};
+
+GraphicsSystem.prototype.pause = function () {
+  this.tick = function () {};
 };
 
 GraphicsSystem.prototype.tick = function (t, cb) {
@@ -21,8 +27,17 @@ GraphicsSystem.prototype.tick = function (t, cb) {
       this.canvas.height !== this.canvas.offsetHeight) {
     this.canvas.width = this.canvas.offsetWidth;
     this.canvas.height = this.canvas.offsetHeight;
+    this.entities.forEach((ent) => {
+      if (ent instanceof AltitudeLimit) {
+        ent.width = (this.canvas.width / this.canvas.height) + 0.5;
+      }
+    });
   }
-  this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  this.context.fillStyle = this.context.createLinearGradient(
+    0, 0, 0, this.canvas.height);
+  this.context.fillStyle.addColorStop(0.25, '#fdfcfc');
+  this.context.fillStyle.addColorStop(1, '#b1b1b1');
+  this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
   this.context.save();
   this.context.translate(this.canvas.width / 2, this.canvas.height);
   this.context.scale(this.canvas.height, -this.canvas.height);
