@@ -1,6 +1,13 @@
 'use strict';
 
-var InputSystem = function (entities, canvas) {
+/**
+ * Object to move the player avatar on click/tap
+ *
+ * @class
+ * @param {Array}             entities all the entities in the game
+ * @param {HTMLCanvasElement} canvas   the canvas to draw on
+ */
+var InputSystem = function InputSystem(entities, canvas) {
   this.entities = entities;
   this.canvas = canvas;
   this.started = false;
@@ -20,8 +27,8 @@ InputSystem.prototype.onClick = function (evt) {
     if (!this.onStartGame()) { return; }
     this.started = true;
   }
-  var burd = this.entities[0];
-  burd.flap();
+  var player = this.entities[0];
+  player.flap();
 };
 
 InputSystem.prototype.onTouchStart = function (evt) {

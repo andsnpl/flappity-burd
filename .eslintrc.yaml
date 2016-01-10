@@ -1,0 +1,112 @@
+env:
+  browser: true
+  node: true
+  es6: true
+  mocha: true
+
+# enable ECMAScript features
+ecmaFeatures:
+  modules: true
+
+rules:
+  # Possible Errors
+  ## disallow trailing commas in object/array literals
+  comma-dangle: [2, "never"]
+  ## check debugger sentence
+  no-debugger: 2
+  ## check duplicate arguments
+  no-dupe-args: 2
+  ## check duplicate object keys
+  no-dupe-keys: 2
+  ## check duplicate switch-case
+  no-duplicate-case: 2
+  ## disallow empty blocks without comment
+  no-empty: 2
+  ## disallow extra semicolons
+  no-extra-semi: 2
+  ## disallow invalid regexp strings in RegExp constructor
+  no-invalid-regexp: 2
+  ## disallow negation on the left hand side of in
+  no-negated-in-lhs: 2
+  ## disallow unreachable code
+  no-unreachable: 2
+  ## require isNaN instead of comparison to NaN
+  use-isnan: 2
+  ## require valid jsdoc comments
+  valid-jsdoc: 2
+  ## require valid typeof compared string like typeof foo === 'strnig'
+  valid-typeof: 2
+
+  # Best Practices
+  ## require curly braces
+  curly: 2
+  ## require a default case
+  default-case: 2
+  ## make sure dots are all before or all after adjacent newlines
+  dot-location: [2, "property"]
+  ## make sure dot notation is used wherever possible
+  dot-notation: 2
+  ## always triple eq
+  eqeqeq: 2
+  ## disallow eval
+  no-eval: 2
+  ## require falls through comment on switch-case
+  no-fallthrough: 2
+  ## disallow leading decimal in number literals
+  no-floating-decimal: 2
+  ## prevent tricky eval-like usage
+  no-implied-eval: 2
+  ## disallow this outside of classes
+  no-invalid-this: 2
+  ## disallow with statements
+  no-with: 2
+  ## require signalling iife with paren wrapping
+  wrap-iife: [2, "outside"]
+
+  # Stylistic Issues
+  ## require single-line blocks to have spaces
+  block-spacing: [2, "always"]
+  ## add space after comma
+  comma-spacing: 2
+  ## require newline at end of files
+  eol-last: 2
+  ## never use function declarations
+  func-style: [2, "expression"]
+  ## 2 space indentation
+  indent: [
+    2, 2,
+    { SwitchCase: 1,
+      VariableDeclarator: {
+        var: 2,
+        let: 2,
+        const: 3
+      } }
+  ]
+  max-len: [2, 80, 2]
+  ## max 2 consecutive empty lines
+  ## require parens for Constructor
+  new-parens: 2
+  ## max 80 length
+  no-multiple-empty-lines: [2, {max: 2}]
+  ## no trailing spaces
+  no-trailing-spaces: 2
+  ## require spaces inside object literals
+  object-curly-spacing: [2, "always"]
+  ## require operators to be after the newline in multiline expressions
+  operator-linebreak: [2, "before"]
+  ## ensure reserved words are quoted if used as properties
+  quote-props: [2, "as-needed", { "keywords": false }]
+  ## use single quote; can use double if contents would otherwise need escaped
+  quotes: [2, "single", "avoid-escape"]
+  ## require semi-colon
+  semi: 2
+  ## require spaces operator like var sum = 1 + 1;
+  space-infix-ops: 2
+  # require space after keywords, eg 'for (..)'
+  space-after-keywords: 2
+  ## require space before blocks, eg 'function () {'
+  space-before-blocks: [2, "always"]
+
+  # Variables
+  ## disallow use of undefined variables (globals)
+  no-undef: 2

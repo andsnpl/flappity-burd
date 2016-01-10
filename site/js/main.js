@@ -1,9 +1,11 @@
 'use strict';
 
-var FlappityBurd = require('./flappity-burd');
+// Bootstrap code
+
+var FlappyTrump = require('./flappy-trump');
 
 document.addEventListener('DOMContentLoaded', function () {
   var canvas = document.getElementById('main-canvas'),
-      app = new FlappityBurd(canvas);
+      app = new FlappyTrump(canvas);
   app.run();
 });

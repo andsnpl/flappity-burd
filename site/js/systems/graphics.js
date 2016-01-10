@@ -2,6 +2,12 @@
 
 var AltitudeLimit = require('../entities/altitude-limit');
 
+/**
+ * Object to iterate through entities and draw them to the screen
+ *
+ * @param {Array}             entities all the entities in the system
+ * @param {HTMLCanvasElement} canvas   the canvas to draw on
+ */
 var GraphicsSystem = function (entities, canvas) {
   this.entities = entities;
   this.canvas = canvas;

@@ -1,5 +1,7 @@
 'use strict';
 
+// some simple functions to avoid spelling stuff out in the classes
+
 var h = exports;
 
 h.clamp = function(value, low, high) {
