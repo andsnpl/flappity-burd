@@ -38,7 +38,8 @@ PlayerGraphicsComponent.prototype.draw = function (context) {
   // Move from the center of the player to the corner
   context.translate(-(width / 2), height / 2);
 
-  // Flip (because GraphicsSystem by default sets 0 as bottom of the canvas)
+  // Flip y axis (because GraphicsSystem by default sets 0 as bottom of the
+  // canvas)
   context.scale(1, -1);
 
   // Draw Trump
