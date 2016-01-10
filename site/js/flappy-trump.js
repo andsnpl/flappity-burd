@@ -5,11 +5,17 @@ var GraphicsSystem = require('./systems/graphics'),
     InputSystem = require('./systems/input'),
     ObstacleSystem = require('./systems/obstacles'),
     UISystem = require('./systems/ui'),
-    Burd = require('./entities/burd');
+    Player = require('./entities/player');
 
-var FlappityBurd = function(canvas) {
-  this.burd = new Burd();
-  this.entities = [this.burd];
+/**
+ * Game state manager
+ *
+ * @class
+ * @param {HTMLCanvasElement} canvas what to draw on
+ */
+var FlappyTrump = function FlappyTrump(canvas) {
+  this.player = new Player();
+  this.entities = [this.player];
 
   this.graphics = new GraphicsSystem(this.entities, canvas);
   this.physics = new PhysicsSystem(this.entities);
@@ -21,24 +27,24 @@ var FlappityBurd = function(canvas) {
     this.ui.bumpScore();
   };
 
-  this.burd.components.collisions.onCollision = () => {
+  this.player.components.collisions.onCollision = () => {
     this.obstacles.pause();
     this.graphics.pause();
     this.physics.pause();
     this.input.started = false;
     this.ui.reset();
-    this.burd.die();
+    this.player.die();
   };
 
   this.ui.onReady = () => {
-    this.burd.reset();
+    this.player.reset();
     this.obstacles.reset();
     this.graphics.run();
     this.physics.run();
   };
 };
 
-FlappityBurd.prototype.run = function () {
+FlappyTrump.prototype.run = function () {
   this.graphics.run();
   this.input.run();
   this.physics.run();
@@ -46,9 +52,9 @@ FlappityBurd.prototype.run = function () {
     if (!this.ui.isReady) { return false; }
     this.obstacles.run();
     this.ui.start();
-    this.burd.start();
+    this.player.start();
     return true;
   };
 };
 
-module.exports = FlappityBurd;
+module.exports = FlappyTrump;

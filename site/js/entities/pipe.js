@@ -5,7 +5,18 @@ var PipeGraphicsComponent = require('../components/graphics/pipe'),
     SoundComponent = require('../components/sound/sound'),
     RectCollisionComponent = require('../components/collisions/rectangle');
 
-var Pipe = function (startX, height, attach, passCb) {
+/**
+ * Object to represent a pipe, either at the top of the screen or the bottom
+ *
+ * @class
+ * @param {number}    startX position on the canvas for the left edge. Should be
+ *                           outside the bounds of the screen.
+ * @param {number}    height height of the pipe
+ * @param {string}    attach where to start drawing the pipe ('T' or 'B' only)
+ * @param {function?} passCb function to execute when the pipe is past the
+ *                           middle of the screen
+ */
+var Pipe = function Pipe(startX, height, attach, passCb) {
   this.attach = attach;
   this.height = height;
   this.width = 0.15;
@@ -14,7 +25,8 @@ var Pipe = function (startX, height, attach, passCb) {
     graphics: new PipeGraphicsComponent(this),
     physics: new PhysicsComponent(this),
     sound: new SoundComponent(this),
-    collisions: new RectCollisionComponent(this, {x: this.width, y: this.height})
+    collisions: new RectCollisionComponent(
+      this, { x: this.width, y: this.height })
   };
 
   // Really hacky. This augments the physics update to check the new position
@@ -34,10 +46,12 @@ var Pipe = function (startX, height, attach, passCb) {
     }
   };
 
+  // Adding half the width to the left edge to get the horizontal center
   this.components.physics.position.x = startX + (this.width / 2);
-  this.components.physics.position.y = attach === 'T' ?
-    1 - (height / 2) :
-    height / 2;
+  // Find the vertical center based on the attach point and the height
+  this.components.physics.position.y = attach === 'T'
+    ? 1 - (height / 2)
+    : height / 2;
   this.components.physics.velocity.x = -0.35;
 };
 

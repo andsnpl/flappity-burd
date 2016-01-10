@@ -4,7 +4,14 @@ var Pipe = require('../entities/pipe'),
     AltitudeLimit = require('../entities/altitude-limit'),
     scale = require('../helpers').scale;
 
-var ObstacleSystem = function (entities, canvas) {
+/**
+ * Object to manage adding and deleting the obstacles to the game board
+ *
+ * @class
+ * @param {Array}             entities all the entities in the game
+ * @param {HTMLCanvasElement} canvas   the canvas to draw on
+ */
+var ObstacleSystem = function ObstacleSystem(entities, canvas) {
   this.entities = entities;
   this.canvas = canvas;
   this.ground = new AltitudeLimit(0);

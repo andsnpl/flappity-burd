@@ -1,6 +1,12 @@
 'use strict';
 
-var CollisionSystem = function(entities) {
+/**
+ * Object to iterate through pairs of collide-able entities looking for overlap
+ *
+ * @class
+ * @param {Array} entities all the entities in the game
+ */
+var CollisionSystem = function CollisionSystem(entities) {
   this.entities = entities;
 };
 

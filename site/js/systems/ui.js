@@ -1,13 +1,13 @@
 'use strict';
 
-var UISystem = function () {
-  this.highScore = localStorage.getItem('burd-high-score') || 0;
-  this.endingSplashElt = document.getElementById('burd-ending-splash');
-  this.finalScoreElt = document.getElementById('burd-final-score');
-  this.highScoreElt = document.getElementById('burd-high-score');
-  this.readyButton = document.getElementById('burd-ready-button');
-  this.readySplashElt = document.getElementById('burd-ready-splash');
-  this.scoreElt = document.getElementById('burd-score');
+var UISystem = function UISystem() {
+  this.highScore = localStorage.getItem('ft-high-score') || 0;
+  this.endingSplashElt = document.getElementById('ft-ending-splash');
+  this.finalScoreElt = document.getElementById('ft-final-score');
+  this.highScoreElt = document.getElementById('ft-high-score');
+  this.readyButton = document.getElementById('ft-ready-button');
+  this.readySplashElt = document.getElementById('ft-ready-splash');
+  this.scoreElt = document.getElementById('ft-score');
   this.readyButton.onclick = this.ready.bind(this);
   this.ready();
 };
@@ -33,7 +33,7 @@ UISystem.prototype.start = function () {
 
 UISystem.prototype.reset = function () {
   this.highScore = Math.max(this.highScore, this.score);
-  localStorage.setItem('burd-high-score', this.highScore);
+  localStorage.setItem('ft-high-score', this.highScore);
 
   this.highScoreElt.textContent = this.highScore.toString();
   this.finalScoreElt.textContent = this.score.toString();

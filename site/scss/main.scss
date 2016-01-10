@@ -20,7 +20,7 @@ button, input[type=button], input[type=submit] {
   height: 100%;
 }
 
-#burd-splash-container {
+#ft-splash-container {
   position: absolute;
   top: 0;
   left: 0;
@@ -28,7 +28,7 @@ button, input[type=button], input[type=submit] {
   text-align: center;
 }
 
-#burd-ending-splash {
+#ft-ending-splash {
   display: none;
   background-color: #f0da2c;
   margin-top: 30vh;
@@ -39,14 +39,14 @@ button, input[type=button], input[type=submit] {
   border: 4px solid black;
 }
 
-#burd-ready-splash {
+#ft-ready-splash {
   display: none;
   pointer-events: none;
   margin-top: 30vh;
   text-align: center;
 }
 
-#burd-score-container {
+#ft-score-container {
   position: absolute;
   margin: auto;
   left: 0;
@@ -54,7 +54,7 @@ button, input[type=button], input[type=submit] {
   text-align: center;
 }
 
-#burd-score {
+#ft-score {
   display: none;
   font-size: 3rem;
   color: #f0da2c;
@@ -75,7 +75,7 @@ button, input[type=button], input[type=submit] {
   z-index: 1000;
 }
 
-#burd-info-splash {
+#ft-info-splash {
   display: none;
   position: absolute;
   left: 25vw;

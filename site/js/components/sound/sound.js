@@ -1,26 +1,36 @@
 'use strict';
 
-var SoundComponent = function (entity) {
+/**
+ * Object to play any sound the game knows about.
+ *
+ * @class
+ * @param {*} entity the entity owning this component
+ */
+var SoundComponent = function SoundComponent(entity) {
   this.entity = entity;
-  this.sounds = [
-      'flap.ogg', 'ching.wav', 'slap.wav',
-      'nothappen.mp3', 'runwin.mp3' ]
-    .reduce((sounds, fname) => {
-      var audio = new Audio('sounds/' + fname);
-      audio.load();
-      sounds[fname] = audio;
-      return sounds;
-    }, {});
 };
 
+// Static property
+SoundComponent.sounds = [
+  // filenames used to make sounds in the app.
+  'flap.wav', 'ching.wav', 'slap.wav', 'nothappen.mp3', 'runwin.mp3'
+]
+  // convert from array of names to a mapping (object) that associates names
+  // to audio elements.
+  .reduce((sounds, fname) => {
+    sounds[fname] = new Audio('sounds/' + fname);
+    sounds[fname].load(); // Preload each element so it can play on demand.
+    return sounds;
+  }, {});
+
 SoundComponent.prototype.playSound = function (fname) {
-  var s = this.sounds[fname];
+  var s = SoundComponent.sounds[fname];
   s.load();
   s.play();
 };
 
 SoundComponent.prototype.flapSound = function () {
-  this.playSound('flap.ogg');
+  this.playSound('flap.wav');
 };
 
 SoundComponent.prototype.scoreSound = function () {
