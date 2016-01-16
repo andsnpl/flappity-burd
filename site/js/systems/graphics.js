@@ -5,10 +5,11 @@ var AltitudeLimit = require('../entities/altitude-limit');
 /**
  * Object to iterate through entities and draw them to the screen
  *
+ * @class
  * @param {Array}             entities all the entities in the system
  * @param {HTMLCanvasElement} canvas   the canvas to draw on
  */
-var GraphicsSystem = function (entities, canvas) {
+var GraphicsSystem = function GraphicsSystem(entities, canvas) {
   this.entities = entities;
   this.canvas = canvas;
   this.context = canvas.getContext('2d');
@@ -20,7 +21,7 @@ GraphicsSystem.prototype.run = function () {
     global.requestAnimationFrame((t) => {
       tick(t, recur);
     });
-  })();
+  }());
 };
 
 GraphicsSystem.prototype.pause = function () {
@@ -29,8 +30,8 @@ GraphicsSystem.prototype.pause = function () {
 
 GraphicsSystem.prototype.tick = function (t, cb) {
   // Blank slate.
-  if (this.canvas.width !== this.canvas.offsetWith ||
-      this.canvas.height !== this.canvas.offsetHeight) {
+  if (this.canvas.width !== this.canvas.offsetWith
+      || this.canvas.height !== this.canvas.offsetHeight) {
     this.canvas.width = this.canvas.offsetWidth;
     this.canvas.height = this.canvas.offsetHeight;
     this.entities.forEach((ent) => {
@@ -44,6 +45,8 @@ GraphicsSystem.prototype.tick = function (t, cb) {
   this.context.fillStyle.addColorStop(0.25, '#fdfcfc');
   this.context.fillStyle.addColorStop(1, '#b1b1b1');
   this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+  // Set up the canvas dimensions that the rest of the game will see.
   this.context.save();
   this.context.translate(this.canvas.width / 2, this.canvas.height);
   this.context.scale(this.canvas.height, -this.canvas.height);

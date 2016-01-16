@@ -22,7 +22,7 @@ var AltitudeLimit = function AltitudeLimit(yPosition) {
       this, { x: this.width, y: this.height })
   };
 
-  // Physics component has been set up to return its 'time' property to `0` when
+  // Physics component has been set up to reset its 'time' property to `0` when
   // it reaches the number set in 'period'. Why is it on the physics component?
   // Because that's the only place keeping track of time every frame.
   //
